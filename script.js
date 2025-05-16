@@ -35,9 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- API Base URL ---
     // IMPORTANT: Replace with the actual URL where your PHP files are hosted
     // Example: 'http://localhost/your-project-folder' or 'https://your-domain.com'
-    const API_BASE_URL = 'http://localhost/uni-study-hub'; // <--- *** UPDATE THIS ***
+    const API_BASE_URL = 'http://localhost/uni-study-hub';
 
-    let currentUser = null; // Store logged-in user info (id, username, etc.)
+    let currentUser = null;
 
     // --- Utility Functions ---
 

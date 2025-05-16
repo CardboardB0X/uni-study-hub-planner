@@ -55,8 +55,6 @@ if ($request_method === 'OPTIONS') {
 
 // --- Handle API Requests based on Resource Type ---
 
-// Note: In a real app, you'd need robust input validation and more detailed error handling.
-// This code uses prepared statements, which helps prevent SQL injection for bound parameters.
 
 switch ($resource_type) {
     case 'resources':
@@ -243,8 +241,6 @@ switch ($resource_type) {
                 $bindParams[] = $id;
                 $bindParams[] = $loggedInUserId;
 
-                // Bind parameters dynamically using call_user_func_array or ... (splat operator requires PHP 5.6+)
-                // For older PHP: call_user_func_array([$stmt, 'bind_param'], array_merge([$bindTypes], $bindParams));
                 $stmt->bind_param($bindTypes, ...$bindParams);
 
 
@@ -329,10 +325,6 @@ switch ($resource_type) {
                 echo json_encode(["message" => "Method not allowed for tasks"]);
         }
         break;
-
-    // --- New Endpoints for User Resource Statuses (Viewed/Pinned) ---
-    // These require database tables like user_viewed_resources and user_pinned_resources
-    // with columns like user_id INT, resource_id INT, PRIMARY KEY (user_id, resource_id)
 
     case 'users':
          // Expecting URLs like /api.php/users/1/viewed or /api.php/users/1/pinned/5
