@@ -1,0 +1,509 @@
+/* Paste the complete CSS from the previous step here */
+/* --- Variables for easy customization --- */
+:root {
+    --primary-color: #0056b3; /* University Blue */
+    --primary-dark: #004080;
+    --accent-color: #28a745; /* Green for success/add */
+    --accent-dark: #218838;
+    --background-color: #f8f9fa; /* Light gray background */
+    --card-background: #ffffff; /* White cards */
+    --text-color: #333;
+    --light-text: #555;
+    --border-color: #dee2e6; /* Light gray borders */
+    --danger-color: #dc3545; /* Red for delete/error */
+    --warning-color: #ffc107; /* Yellow for actions like 'Done' */
+    --info-color: #17a2b8; /* Blue for info/viewed */
+    --pinned-color: #fd7e14; /* Orange for pinned */
+    --spacing-small: 8px;
+    --spacing-medium: 15px;
+    --spacing-large: 20px;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif; /* Readable body font */
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    display: flex;
+    flex-direction: column; /* Allow footer to push to bottom */
+}
+
+h1, h2, h3 {
+    font-family: 'Roboto', sans-serif; /* More prominent heading font */
+    color: var(--primary-dark);
+    margin-top: 0;
+}
+
+h1 { font-size: 2.5em; }
+h2 { font-size: 1.8em; border-bottom: 2px solid var(--border-color); padding-bottom: var(--spacing-small); margin-bottom: var(--spacing-large); }
+h3 { font-size: 1.4em; margin-bottom: var(--spacing-medium); }
+
+.container {
+    width: 95%;
+    max-width: 960px; /* Standard max-width for content */
+    margin: 0 auto; /* Center the container */
+    padding: 0 var(--spacing-medium); /* Add side padding */
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: var(--spacing-large) 0; /* Top/bottom padding */
+    margin-bottom: var(--spacing-large);
+}
+
+header .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-medium); /* Space between items in header */
+}
+
+header h1 {
+    color: white;
+    margin: 0;
+}
+
+nav {
+    margin-top: 0; /* Adjusted margin */
+}
+
+nav button {
+    background-color: var(--primary-dark);
+    color: white;
+    border: none;
+    padding: var(--spacing-small) var(--spacing-medium);
+    margin: 0 var(--spacing-small);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-size: 1em;
+    min-width: 100px; /* Give buttons a min width */
+}
+
+nav button:hover {
+    background-color: #003366; /* Even darker on hover */
+    transform: translateY(-1px); /* Slight lift effect */
+}
+
+nav button.active {
+    background-color: var(--primary-dark);
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#auth-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-small);
+    font-size: 0.9em;
+    flex-wrap: wrap; /* Allow controls to wrap */
+    justify-content: center;
+}
+
+#welcome-message {
+    font-weight: bold;
+    margin-right: var(--spacing-small);
+}
+
+/* --- Button Styles --- */
+.primary-btn, .secondary-btn {
+    border: none;
+    padding: var(--spacing-small) var(--spacing-medium);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.primary-btn {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-1px);
+}
+
+.secondary-btn {
+    background-color: #6c757d; /* Gray */
+    color: white;
+}
+
+.secondary-btn:hover {
+    background-color: #5a6268;
+    transform: translateY(-1px);
+}
+
+main {
+    flex-grow: 1; /* Allow main content to take up available space */
+    padding-bottom: var(--spacing-large); /* Add padding before footer */
+}
+
+main .container {
+     display: flex;
+    flex-direction: column; /* Stack sections */
+    gap: var(--spacing-large); /* Space between sections */
+}
+
+section {
+    background-color: var(--card-background);
+    padding: var(--spacing-large);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Form Styling --- */
+.form-container {
+    background-color: #f9f9f9;
+    padding: var(--spacing-large);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    margin-bottom: var(--spacing-large); /* Space between forms/list */
+}
+
+.auth-forms {
+    display: grid;
+    grid-template-columns: 1fr; /* Stack on small screens */
+    gap: var(--spacing-large);
+}
+
+@media (min-width: 768px) {
+    .auth-forms {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Two columns on larger screens */
+    }
+}
+
+
+.form-group {
+    margin-bottom: var(--spacing-medium);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-small);
+    font-weight: 600; /* Slightly bolder labels */
+    color: var(--light-text);
+    font-size: 0.9em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="url"],
+.form-group input[type="date"],
+.form-group textarea {
+    width: 100%;
+    padding: var(--spacing-small);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding in width */
+    font-size: 1em;
+}
+
+.form-group textarea {
+    resize: vertical; /* Allow vertical resize */
+}
+
+/* Style for messages */
+.message {
+    margin-top: var(--spacing-medium);
+    padding: var(--spacing-small);
+    border-radius: 4px;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.message:empty { /* Hide message element if it has no text */
+    display: none;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+
+/* --- Item List Styling (Resources and Tasks) --- */
+.resource-lists {
+    display: grid;
+    grid-template-columns: 1fr; /* Stack on small screens */
+    gap: var(--spacing-large);
+}
+
+@media (min-width: 768px) {
+     .resource-lists {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 2 or 3 columns */
+     }
+}
+
+.item-list {
+     /* margin-top: var(--spacing-large); */ /* Adjust margin as lists are now in grid */
+    border-top: 1px solid var(--border-color); /* Separator line above list */
+    padding-top: var(--spacing-medium);
+     min-height: 80px; /* Give lists a minimum height to show loading/empty states */
+}
+
+.list-count {
+    font-size: 0.8em;
+    color: var(--light-text);
+    font-weight: normal;
+    margin-left: var(--spacing-small);
+}
+
+
+.resource-item,
+.task-item {
+    border: 1px solid var(--border-color);
+    padding: var(--spacing-medium);
+    margin-bottom: var(--spacing-small);
+    border-radius: 4px;
+    background-color: var(--card-background);
+    display: flex;
+    flex-direction: column; /* Stack content and actions vertically by default */
+    gap: var(--spacing-small); /* Space between content and actions */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    position: relative; /* Needed for absolute positioning of pin */
+}
+
+.resource-item > div,
+.task-item > div {
+    flex-grow: 1; /* Allow content div to take space */
+     /* Ensure text wrapping */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+.resource-item h4,
+.task-item h4 {
+    margin: 0 0 var(--spacing-small) 0;
+    color: var(--primary-color);
+    font-size: 1.1em;
+}
+
+.resource-item p,
+.task-item p {
+    margin: 0 0 var(--spacing-small) 0;
+    font-size: 0.9em;
+    color: var(--light-text);
+}
+
+.resource-item a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.resource-item a:hover {
+     text-decoration: underline;
+}
+
+/* Resource Actions (Viewed/Pinned/Link) */
+.resource-actions {
+    display: flex;
+    gap: var(--spacing-small);
+    flex-wrap: wrap;
+     margin-top: var(--spacing-small);
+}
+
+.resource-actions button {
+     border: none;
+    padding: var(--spacing-small) var(--spacing-medium);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: background-color 0.3s ease;
+}
+
+.mark-viewed-btn {
+    background-color: var(--info-color);
+    color: white;
+}
+.mark-viewed-btn:hover {
+    background-color: #138496;
+}
+
+.pin-resource-btn, .unpin-resource-btn {
+     background-color: var(--pinned-color);
+     color: white;
+}
+.pin-resource-btn:hover, .unpin-resource-btn:hover {
+    background-color: #da620b;
+}
+
+/* Visual indicator for Pinned Resources (Optional, could use an icon too) */
+.resource-item.pinned {
+    border-left: 5px solid var(--pinned-color);
+    padding-left: calc(var(--spacing-medium) - 5px); /* Adjust padding */
+}
+/* OR could use a ::before pseudo-element for a pin icon */
+
+
+/* --- Task Specific Styling --- */
+.task-actions {
+    display: flex;
+    gap: var(--spacing-small);
+    flex-wrap: wrap;
+    /* Align right if space allows */
+    justify-content: flex-end;
+    margin-top: var(--spacing-small); /* Space above buttons */
+}
+
+
+.mark-complete-btn, .delete-task-btn {
+    border: none;
+    padding: var(--spacing-small) var(--spacing-medium);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.mark-complete-btn {
+    background-color: var(--warning-color);
+    color: var(--text-color); /* Use dark text on yellow */
+}
+
+.mark-complete-btn:hover {
+    background-color: #e0a800;
+    transform: translateY(-1px);
+}
+
+.delete-task-btn {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.delete-task-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+}
+
+/* Style for completed tasks */
+.task-item.completed {
+    text-decoration: line-through;
+    opacity: 0.6; /* Make completed tasks slightly faded */
+    background-color: #e9ecef; /* Slightly different background */
+}
+
+/* --- Time Bar Styling --- */
+.task-time-bar {
+    width: 100%;
+    height: 8px; /* Height of the bar */
+    background-color: #e0e0e0; /* Background of the bar */
+    border-radius: 4px;
+    overflow: hidden; /* Hide overflow of the progress fill */
+    margin-top: var(--spacing-small); /* Space above the bar */
+    margin-bottom: var(--spacing-small); /* Space below the bar */
+}
+
+.task-time-bar .progress {
+    height: 100%;
+    background-color: var(--primary-color); /* Color of the progress fill */
+    width: 0%; /* Initial width */
+    transition: width 0.5s ease-in-out; /* Smooth animation on width change */
+    /* You could add a simple pulsating animation if desired */
+    /* animation: pulse-progress 2s infinite ease-in-out; */
+}
+
+/* Example animation for progress bar */
+/* @keyframes pulse-progress {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+} */
+
+
+/* Different colors based on progress (JS will add classes) */
+.task-time-bar.progress-warning .progress {
+    background-color: var(--warning-color); /* Yellow when close to deadline */
+}
+.task-time-bar.progress-critical .progress {
+    background-color: var(--danger-color); /* Red when deadline is very near or passed */
+}
+
+
+/* Hide elements with the 'hidden' class */
+.hidden {
+    display: none;
+}
+
+/* Loading indicator style */
+.loading {
+    text-align: center;
+    font-style: italic;
+    color: var(--light-text);
+    padding: var(--spacing-medium);
+}
+
+
+footer {
+    text-align: center;
+    padding: var(--spacing-medium) 0;
+    margin-top: auto; /* Push footer to the bottom */
+    background-color: #333;
+    color: white;
+    font-size: 0.9em;
+}
+
+footer .container {
+    padding: 0 var(--spacing-medium); /* Match header container padding */
+}
+
+/* --- Responsive Adjustments --- */
+@media (min-width: 576px) {
+    /* Adjust layout for small tablets and larger phones */
+    .resource-item,
+    .task-item {
+         flex-direction: row; /* Arrange content and actions side-by-side */
+         align-items: center;
+         justify-content: space-between; /* Space out content and actions */
+    }
+     .resource-item > div,
+    .task-item > div {
+         margin-right: var(--spacing-medium); /* Add space */
+    }
+    .resource-actions,
+    .task-actions {
+         margin-top: 0; /* Remove top margin when side-by-side */
+    }
+}
+
+@media (max-width: 575px) {
+    /* Further stack elements on very small screens */
+    header .container {
+        gap: var(--spacing-medium);
+    }
+    nav button {
+        margin: var(--spacing-small) 0; /* Stack nav buttons */
+        width: 100%; /* Full width buttons */
+    }
+     #auth-controls {
+         flex-direction: column;
+         width: 100%;
+         gap: var(--spacing-small);
+     }
+     #auth-controls button, #auth-controls span {
+         width: 100%;
+         text-align: center;
+         margin-right: 0; /* Remove extra margin */
+     }
+      .resource-item,
+    .task-item {
+         flex-direction: column; /* Ensure stacking */
+    }
+     .resource-actions,
+     .task-actions {
+         justify-content: center; /* Center buttons when stacked */
+     }
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uni Study Hub & Planner</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>University Study Hub</h1>
+            <nav>
+                <button id="show-resources-btn" class="active">Resources</button>
+                <button id="show-planner-btn">My Planner</button>
+            </nav>
+            <div id="auth-controls">
+                <span id="welcome-message"></span>
+                <button id="show-auth-btn" class="secondary-btn">Login / Register</button>
+                <button id="logout-btn" class="secondary-btn hidden">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section id="auth-section" class="hidden">
+                 <h2>Account Access</h2>
+                 <div class="auth-forms">
+                     <div class="form-container">
+                         <h3>Login</h3>
+                         <form id="login-form">
+                             <div class="form-group">
+                                 <label for="login-username">Username:</label>
+                                 <input type="text" id="login-username" required>
+                             </div>
+                             <div class="form-group">
+                                 <label for="login-password">Password:</label>
+                                 <input type="password" id="login-password" required>
+                             </div>
+                             <p id="login-message" class="message"></p> <button type="submit" class="primary-btn">Login</button>
+                         </form>
+                     </div>
+                     <div class="form-container">
+                         <h3>Register</h3>
+                         <form id="register-form">
+                             <div class="form-group">
+                                 <label for="register-username">Username:</label>
+                                 <input type="text" id="register-username" required>
+                             </div>
+                             <div class="form-group">
+                                 <label for="register-password">Password:</label>
+                                 <input type="password" id="register-password" required>
+                             </div>
+                             <p id="register-message" class="message"></p> <button type="submit" class="primary-btn">Register</button>
+                         </form>
+                     </div>
+                 </div>
+             </section>
+
+
+            <section id="resources-section">
+                <h2>Study Resources</h2>
+
+                 <div id="add-resource-form-container" class="form-container hidden">
+                    <h3>Add New Resource</h3>
+                    <form id="add-resource-form">
+                         <div class="form-group">
+                            <label for="resource-title">Title:</label>
+                            <input type="text" id="resource-title" required>
+                         </div>
+                         <div class="form-group">
+                            <label for="resource-url">URL:</label>
+                            <input type="url" id="resource-url" required>
+                         </div>
+                         <div class="form-group">
+                            <label for="resource-category">Category/Course:</label>
+                            <input type="text" id="resource-category">
+                         </div>
+                         <div class="form-group">
+                            <label for="resource-description">Description:</label>
+                            <textarea id="resource-description" rows="3"></textarea>
+                         </div>
+                        <p id="add-resource-message" class="message"></p> <button type="submit" class="primary-btn">Add Resource</button>
+                    </form>
+                </div>
+
+                <div class="resource-lists">
+                     <div id="pinned-resources-container">
+                         <h3>Pinned Resources <span class="list-count"></span></h3>
+                         <div id="pinned-resources-list" class="item-list">
+                              <p class="loading">Loading pinned resources...</p> </div>
+                     </div>
+
+                     <div id="viewed-resources-container">
+                         <h3>Viewed Resources <span class="list-count"></span></h3>
+                         <div id="viewed-resources-list" class="item-list">
+                              <p class="loading">Loading viewed resources...</p> </div>
+                     </div>
+
+                     <div id="available-resources-container">
+                         <h3>Available Resources <span class="list-count"></span></h3>
+                         <div id="available-resources-list" class="item-list">
+                             <p class="loading">Loading available resources...</p> </div>
+                     </div>
+                 </div>
+            </section>
+
+            <section id="planner-section" class="hidden">
+                <h2>My Study Planner</h2>
+                 <div id="add-task-form-container" class="form-container">
+                    <h3>Add New Task</h3>
+                    <form id="add-task-form">
+                        <div class="form-group">
+                           <label for="task-name">Task Name:</label>
+                           <input type="text" id="task-name" required>
+                        </div>
+                        <div class="form-group">
+                           <label for="task-due-date">Due Date:</label>
+                           <input type="date" id="task-due-date">
+                        </div>
+                         <div class="form-group">
+                           <label for="task-course">Related Course (Optional):</label>
+                           <input type="text" id="task-course">
+                         </div>
+                         <p id="add-task-message" class="message"></p> <button type="submit" class="primary-btn">Add Task</button>
+                    </form>
+                </div>
+                <div id="tasks-list-container">
+                     <h3>Upcoming Tasks</h3>
+                    <div id="tasks-list" class="item-list">
+                         <p class="loading">Loading tasks...</p> </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+             <p>&copy; 2025 University Study Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
